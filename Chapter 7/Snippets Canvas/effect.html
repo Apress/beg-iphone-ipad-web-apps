@@ -1,0 +1,49 @@
+<img src="flower.jpg" onload="snap()" width="400" height="300">
+<canvas id="area" width="400" height="300"></canvas>
+
+<script>
+
+    function snap() {
+        var canvas = document.getElementsByTagName("canvas")[0];
+        var context = canvas.getContext("2d");
+
+        /* Draw the image into the canvas */
+        var w = canvas.width;
+        var h = canvas.height;
+        context.drawImage(document.images[0], 0, 0, w, h);
+
+        /* Get the input buffer and create an output buffer */
+        var inp = context.getImageData(0, 0, w, h);
+        var out = context.createImageData(inp.width, inp.height);
+
+        /* Iterate through the image pixels */
+        for (var y = 0; y < inp.height; y++) {
+            var line = y * inp.width * 4;
+
+            for (var x = 0; x < inp.width; x++) {
+
+                /* Get a pixel and calculate its brightness */
+                var pixel = x * 4 + line;
+                var light = 255 - (inp.data[pixel + 0] * 0.30        // Red
+                                +  inp.data[pixel + 1] * 0.59        // Green
+                                +  inp.data[pixel + 2] * 0.11);      // Blue
+
+                var out_r = light;
+                var out_g = light;
+                var out_b = light;
+                var out_a = inp.data[pixel + 3];    // Alpha
+
+                /* Write the new pixel into the buffer */
+                out.data[pixel + 0] = out_r;
+                out.data[pixel + 1] = out_g;
+                out.data[pixel + 2] = out_b;
+                out.data[pixel + 3] = out_a;
+            }
+        }
+
+        /* Flush the buffer to the canvas area */
+        context.clearRect(0, 0, w, h);
+        context.putImageData(out, 0, 0);
+    }
+
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Startup Screen</title>
+        <meta name="viewport" content="initial-scale=1.0; 
+            maximum-scale=1.0; user-scalable=no">
+
+         <style>
+             html { height:100% }
+             body { height:100%; background-color:lightgrey; margin:0; color: gray }
+
+            .bigSpinner {
+                background-image: -webkit-canvas(spinner);
+            }
+
+            .useSpinner {
+                background-position: center 70%;
+                background-repeat: no-repeat;
+                width:100%;
+                min-height:100%;
+                padding-top:20%;
+                -webkit-box-sizing:border-box;
+                text-align:center;
+                font-size:100px;
+            }
+        </style>
+
+        <script src="BigSpinner.js"></script>
+        <script>
+             var spinner = new BigSpinner();
+             spinner.init("spinner", "gray");
+             spinner.animate();
+        </script>
+    </head>
+<body>
+
+<div class="bigSpinner useSpinner">
+    &#63743;<!-- Apple logo -->
+</div>
+
+</body>
+</html>

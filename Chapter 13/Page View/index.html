@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Page View Demo</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+	
+    <link rel="stylesheet" href="styles/pageview.css">
+    <script src="scripts/pageview.js"></script>
+</head>
+
+<body>
+	<div class="box pageview-wrapper"></div>
+	<script>
+		var wrap = document.querySelector(".pageview-wrapper"); 
+		var color = 0;
+		
+		function makeColor(hue) {
+		    return "hsl(" + hue + ", 100%, 50%)";
+		}
+		
+		wrap.addEventListener("bookPageChanged", function(e) {
+		    e.pages.left.style.backgroundColor = makeColor(color - 20);
+		    e.pages.view.style.backgroundColor = makeColor(color);
+		    e.pages.right.style.backgroundColor = makeColor(color + 20);
+		}, false);
+
+		wrap.addEventListener("bookPageMovedLeft", function(e) {
+		    color += 20;    // New active color
+		    e.pages.right.style.backgroundColor = makeColor(color + 20);
+		}, false);
+		
+		wrap.addEventListener("bookPageMovedRight", function(e) {
+		    color -= 20;    // New active color
+		    e.pages.left.style.backgroundColor = makeColor(color - 20);
+		}, false);
+
+		var view = new PageView(wrap);
+	</script>
+	
+	
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: helvetica;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        p { margin: 0; }
+   </style>
+    <script>
+        window.addEventListener("message", handleParentMessage, false);
+        
+        function handleParentMessage(e) {
+            if (e.origin == "http://www.example1.local") {
+                if (e.data == "getFrameTitle") {
+                    e.source.postMessage("title:" + document.title, e.origin);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <p>Hello, I'm a calculator widget.<br>
+       Click "Send" to request the widget title.</p>
+
+</body>
+</html>

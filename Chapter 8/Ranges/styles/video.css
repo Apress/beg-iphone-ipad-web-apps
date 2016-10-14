@@ -1,0 +1,67 @@
+body {
+    background-color: #444;
+    color: white;
+    font-family: helvetica;
+    text-shadow: black 2px 2px 2px;
+}
+
+.video { margin-right: 200px; }
+.media { position: relative; }
+
+.media time {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    color: white;
+    font: bold 10px verdana;
+}
+
+.media video {
+    display: block;
+    background: black;
+    -webkit-box-shadow: 0 4px 20px black;
+}
+
+.info {
+    float: right;
+    width: 190px;
+    font-size: 13px;
+}
+
+.info h1 { font-size: 18px; }
+
+#buffered, #played {
+    position: relative;
+    background-color: black;
+    -webkit-box-shadow: 0 4px 20px black;
+    margin: 1px;
+}
+
+#buffered {
+    background-color: #444;
+}
+
+/* Progress bars */
+meter, mark {
+    display: block;
+    height: 10px;
+}
+
+#buffered meter {
+    background-color: gray;
+    -webkit-box-sizing: border-box;
+    border:1px solid black;
+    border-width:0 1px;
+}
+
+/* Arrow indicator */
+#buffered mark {
+    position: absolute;
+    border: 5px solid transparent;
+    border-bottom-color: white;
+    margin: -10px 0 0 -5px;
+    height: 0;
+}

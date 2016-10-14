@@ -1,0 +1,33 @@
+.header-wrapper {
+    background-color: #444;
+}
+
+.view {
+    background-color: #fff;
+}
+
+div#gallery {
+    padding: 2px;
+    float: left;
+}
+
+#gallery > div {
+    border: solid 1px rgba(0,0,0,0.1);
+    width: 75px;
+    height: 75px;
+    margin: 2px;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -webkit-background-size: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    -webkit-background-origin: border-box;
+}
+
+#gallery > div.portrait {
+    -webkit-background-size: 100% auto;
+}
+
+#gallery > div.landscape {
+    -webkit-background-size: auto 100%;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compass</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/compass.css">
+    <script src="scripts/main.js"></script>
+    <script src="scripts/compass.js"></script>
+</head>
+
+<body onload="init()">
+    <div class="view">
+        <div class="header-wrapper">
+            <h1>Heading</h1>
+        </div>
+    
+       <div id="compass"><div></div></div>
+
+        <div class="list-wrapper">
+            <div id="location">latitude | longitude</div>
+            <ul>
+                <li><span>0</span>Distance to Apple's Headquarter</li>
+                <li><span>0</span>Bearing</li>
+                <li><span>0</span>Current Speed</li>
+                <li><span>0</span>Location Accuracy</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

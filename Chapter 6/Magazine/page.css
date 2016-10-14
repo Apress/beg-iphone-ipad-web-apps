@@ -1,0 +1,61 @@
+* { margin: 0; }
+
+html { height: 100% }
+body {
+    height: 100%;
+    color: white;
+
+}
+
+.mag {
+    background: black url(flower.jpg) center center no-repeat;
+    -webkit-background-size: auto 150%;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black;
+}
+
+h1 {
+    margin: 0;
+    font-size: 50px;
+}
+
+p {
+    margin: 0;
+    position: absolute;
+    max-width: 420px;
+    -webkit-column-gap: 20px;
+    -webkit-column-width: 200px;
+    -webkit-column-rule: 1px dotted white;
+    font-size: 16px;
+    text-shadow: 1px 0 0 black;
+    bottom: 20px;
+    right: 20px;
+}
+
+p:first-letter {
+    font-size: 36px;
+    margin-right: 4px;
+    margin-bottom: -6px;
+    float: left;
+}
+
+p:after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    margin-left: 10px;
+    -webkit-box-shadow: black 1px 1px 1px;
+}
+
+@media only screen and (min-device-width:760px) {
+    h1 { font-size: 30px; }
+    h2 { font-size: 20px; margin-bottom: 20px; }
+    p  { position: relative; bottom: auto; right: auto; }
+}

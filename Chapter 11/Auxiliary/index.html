@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Messaging Example</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+    <style>
+            .group-wrapper p iframe {
+                width: 100%;
+                height: 1px;
+                border: 0;
+            }
+
+            .header-wrapper .header-button {
+                background-color: #2070e9;
+            }
+
+            .widget h2 {
+                -webkit-border-top-left-radius: 8px;
+                -webkit-border-top-right-radius: 8px;
+                background-color: #c5ccd3;
+                border: 1px solid #a9abae;
+                border-bottom: 0;
+                margin: 0;
+                color: gray;
+                font-size: 14px;
+                line-height: 25px;
+                padding: 0 10px;
+            }
+
+            .widget p {
+                margin-top: 0;
+                border-top: 0;
+                -webkit-border-top-left-radius: 0;
+                -webkit-border-top-right-radius: 0;
+            }
+
+    </style>
+    <script>
+        var win;       // Global variable to work later on the window
+        
+        function openChildWindow() {
+            if (!win) {
+                win = window.open('http://www.example2.local/calculator.html', "childWin");
+            }
+            return false;
+        }
+        
+        function sendMessageToWindow() {
+            win.postMessage("getFrameTitle", "http://www.example2.local");
+        }
+
+        /* Register for the anwser */
+        window.addEventListener("message", handleFrameMessage, false);
+    
+        /* Expects a string under the form "title:frame document title" */
+        function handleFrameMessage(e) {
+            if (e.origin == "http://www.example2.local") {
+                if (e.data == "loaded") {
+                    sendMessageToWindow();
+
+                } else if (e.data && e.data.indexOf("title:") == 0) {
+                    var h2 = document.getElementsByTagName("h2")[0];
+                    h2.lastChild.textContent = e.data.substr(6);
+                }
+            }
+        }
+    
+    </script>
+</head>
+
+<body>
+    <div class="view">
+        <div class="header-wrapper">
+            <h1>Messaging</h1>
+            <button class="header-button" onclick="openChildWindow()">Window</button>
+        </div>
+
+        <div class="group-wrapper">
+            <div class="widget">
+                <h2>Loading Widget...</h2>
+                <p>No iframe here.<br>Click the "Window" button.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

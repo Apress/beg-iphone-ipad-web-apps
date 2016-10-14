@@ -1,0 +1,43 @@
+<canvas id="area" width="400" height="300"></canvas>
+
+<script>
+
+    /* Create a new Image object and attach an onload handler to it */
+    var image = new Image();
+    image.onload = drawImage;
+    image.src = "panda.jpg";
+
+    function drawImage() {
+        /* Get the canvas context */
+        var canvas = document.getElementById("area");
+        var context = canvas.getContext("2d");
+
+        /* Read image dimensions */
+        var w = canvas.width;
+        var h = canvas.height
+
+        /* Prepare a rounded rectangle and use it as clipping area */
+        context.save();
+        roundedRect(context, 20, 20, w - 40, h - 40, 64);
+        context.clip();
+
+        /* Finally, draw the image */
+        context.drawImage(this, 20, 20, w - 40, h - 40);
+        context.restore();
+    }
+
+    function roundedRect(ctx, x, y, w, h, radius) {
+        var x1 = x + radius,
+        var x2 = x + w - radius;
+        var y1 = y + radius;
+        var y2 = y + h - radius;
+
+        ctx.beginPath();
+        ctx.arc(x1, y1, radius,  Math.PI * 1.0, Math.PI * 1.5);
+        ctx.arc(x2, y1, radius,  Math.PI * 1.5, Math.PI * 2.0);
+        ctx.arc(x2, y2, radius,  Math.PI * 2.0, Math.PI * 0.5);
+        ctx.arc(x1, y2, radius,  Math.PI * 0.5, Math.PI * 1.0);
+        ctx.closePath();
+    }
+
+</script>

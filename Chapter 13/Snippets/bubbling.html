@@ -1,0 +1,24 @@
+<div>0<div>1<div>2<div>3<div>4
+    <div>5</div>
+</div></div></div></div></div>
+
+<script>
+	
+	var div = document.getElementsByTagName("div");
+
+    div[0].addEventListener("click", handleEvent, false);
+    div[1].addEventListener("click", handleEvent, false);
+    div[2].addEventListener("click", handleEvent, false);
+    div[3].addEventListener("click", handleEvent, false);
+    div[4].addEventListener("click", handleEvent, false);
+    div[5].addEventListener("click", handleEvent, false);
+
+    function handleEvent(event) {
+        console.log("(" + event.eventPhase + ") " + this.firstChild.nodeValue);
+/*
+		if (event.eventPhase == event.CAPTURING_PHASE) {
+			event.stopPropagation();
+		} */
+	}
+
+</script>

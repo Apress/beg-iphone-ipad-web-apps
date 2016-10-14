@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.pageview-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.pageview-wrapper div {
+    -webkit-transform: translate3d(0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pageview-group div {
+    border: solid 5px black;
+    -webkit-box-sizing: border-box;
+}
+
+.pageview-group div:first-child { left: -100%; }
+.pageview-group div:last-child  { left: +100%; }
+
+.box {
+    width: 100%;
+    height: 100%;
+    background-color: lightgrey;
+}
+
+.pageview-group {
+	-webkit-transition: -webkit-transform 0.35s ease-out;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" onload="notify()">
+
+    <rect x="0" y="0" width="100%" height="100%" fill="lightgrey"
+        stroke="black" stroke-width="4" />
+
+    <circle cx="110" cy="110" r="100" fill="yellow"
+        stroke="red" stroke-width="2" />
+
+    <script type="text/ecmascript"><![CDATA[
+        function notify() {
+            parent.svgLoaded(this);
+
+            /* Create a new <div> element in the host document */
+            var div = document.createElementNS("http://www.w3.org/1999/xhtml", "div");
+            div.style.width = "100px";
+            div.style.height = "100px";
+            div.style.backgroundColor = "green";
+            
+            parent.document.body.appendChild(div);
+        }
+    ]]></script>
+</svg>

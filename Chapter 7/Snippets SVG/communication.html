@@ -1,0 +1,19 @@
+<script>
+    function svgLoaded(svg) {
+        var circles = svg.document.getElementsByTagName("circle");
+        circles[0].setAttribute("r", 200);
+
+        var ellipse = 
+            svg.document.createElementNS("http://www.w3.org/2000/svg",  "ellipse");
+
+        ellipse.setAttribute("cx", "50%");
+        ellipse.setAttribute("cy", "50%");
+        ellipse.setAttribute("rx", "150");
+        ellipse.setAttribute("ry", "50");
+
+        circles[0].parentNode.appendChild(ellipse);
+        }
+</script>
+
+<object data="notify.svg" width="320" height="320"
+        type="image/svg+xml" id="mySVG"></object>

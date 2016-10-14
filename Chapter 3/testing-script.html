@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Testing Scripts</title>
+    <script>
+        var counter = 0;
+        var timerID = window.setInterval(myTimer, 10000);
+
+        function myTimer() {
+            var span = document.getElementById("count");
+            span.textContent = incrementCounter();
+
+            for (var n = 0; n < 100000; n++) {
+                new Object().toString();
+            }
+
+            if (counter > 1) {
+                errorGenerator();
+            }
+        }
+
+        function incrementCounter() {
+            return ++counter;
+        }
+	</script>
+</head>
+
+<body>
+	Timer executions: <span id="count">0</span> 
+</body>
+</html>

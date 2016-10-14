@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Application Template</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+    <style>
+        .ads {
+            z-index: -1;
+            position: relative;
+            -webkit-transition: margin-top 0.35s ease-out;
+            border-bottom: 0;
+            margin: 0 auto 34px;
+            width: 320px;
+        }
+        
+        .ads img { display: block; }
+        
+        .ads .tab:before {
+            color: red;
+            content: 'AD ';
+        }
+            
+        .ads .tab {
+            position: absolute;
+            background-image:-webkit-gradient(
+                linear, left top, left bottom,
+                from(black), to(#666));
+            color: white;
+            font: bold 11px/24px verdana;
+            height: 24px;
+            bottom: -24px;
+            left: 0;
+            width: 100%;
+            padding: 0 5px;
+            -webkit-box-sizing: border-box;
+        }
+    </style>
+    <script>
+        function hideAds() {
+            setTimeout(hide, 5000);
+        }
+
+        function hide() {
+            var ads = document.querySelector(".ads");
+            ads.style.marginTop = (-ads.offsetHeight) + "px";
+        }
+
+        function reveal() {
+            var ads = document.querySelector(".ads");
+            ads.style.marginTop = "";
+            hideAds();
+        }
+    </script>
+    
+</head>
+
+<body onload="hideAds()">
+    <div class="view">
+        <div class="header-wrapper">
+            <h1>Web App Header</h1>
+        </div>
+        
+        <div class="ads">
+            <img src="some-ad.gif" alt="Advertisement" width="320" height="50">
+            <div class="tab" onclick="reveal()">
+                Apress sales. 20% off on all books.</div>
+        </div>
+    
+        <div class="group-wrapper">
+            <h2>iPhone</h2>
+            <p>Hello World!</p>
+        </div>
+    </div>
+</body>
+</html>

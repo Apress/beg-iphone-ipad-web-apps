@@ -1,0 +1,52 @@
+.view {
+    background: -webkit-gradient(radial,
+        0 0, 0, 0 0, 300,
+        from(#a98), to(#654));
+}
+
+.header-wrapper { background-color: transparent; }
+
+#compass div {
+    position: relative;
+    margin: 0 auto;
+    top: 10px;
+}
+
+#compass canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+#compass img {
+    position: absolute;
+    top: 0;
+    left: 0;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-transform: rotate(0);
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-timing-function: ease-out;
+}
+
+.list-wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-top: solid 1px black;
+}
+
+#location {
+    position: absolute;
+    bottom: 140px;
+    font-size: 10px;
+    color: white;
+    text-shadow: rgba(0,0,0,0.7) 0 -1px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.list-wrapper li {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.list-wrapper li span { float: right; }

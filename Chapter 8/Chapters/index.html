@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Media Demo</title>
+        <meta name="viewport" content="initial-scale=1.0;
+            maximum-scale=1.0; user-scalable=no">
+
+        <link rel="stylesheet" href="styles/video.css">
+        <script src="scripts/video.js"></script>
+    </head>
+
+    <body onload="setup()">
+        <div class="info">
+            <h1>Big Buck Bunny</h1>
+            <p>A fantastic movie under Creative Commons License
+                freely available for download to everyone.</p>
+            <form id="list"></form>
+            <br><button onclick="timed.play(2, 2, false)">The rabbit wakes up.</button>
+        </div>
+        <div class="video">
+            <div class="media">
+                <time>Waiting...</time>
+                <video src="media/BigBuckBunny_640x360.m4v"
+                    width="100%" height="360" controls>
+
+                    <track kind="subtitles"
+                           src="srt/subtitles-us.srt" srclang="en-US" label="English Subtitles">
+                    <track kind="subtitles"
+                           src="srt/subtitles-fr.srt" srclang="fr-FR" label="Sous-Titres en Franais">
+
+                    <track kind="chapters"
+                        src="srt/chapters-us.srt" srclang="en-US" label="English Chapters">
+
+                </video>
+                <div id="textual">(Press Play)</div>
+            </div>
+    
+            <div id="buffered"><meter></meter><mark></mark></div>
+            <div id="played"></div>
+        </div>
+    </body>
+</html>

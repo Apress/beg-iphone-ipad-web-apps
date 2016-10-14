@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gesture Demo</title>
+    <meta name="viewport" content="width=device-width;
+        initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <style>
+    
+        body { margin-top: 50% }
+        
+        div {
+            margin:-125px auto 0;
+            text-align: center;
+            color: white;
+            font: bold 20px/250px sans-serif;
+            width: 250px;
+            background: rgba(0,0,255,0.5);
+            border: solid 1px blue;
+            -webkit-border-radius: 32px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>SQUARE</div>
+
+    <script>
+    
+        var div = document.getElementsByTagName("div")[0];
+        
+        div.addEventListener("gesturestart", startHandler, false);
+        div.addEventListener("gesturechange", changeHandler, false);
+        
+        function startHandler(event) {
+            if (event.target != event.currentTarget) {
+                return;
+            }
+            var computed = window.getComputedStyle(event.target);
+            event.target._originalMatrix = 
+                new WebKitCSSMatrix(computed.webkitTransform);
+        }
+        
+        function changeHandler(event) {
+            if (event.target != event.currentTarget) {
+                return;
+            }
+            event.target.style.webkitTransform = event.target._originalMatrix 
+                .scale(event.scale).rotate(event.rotation);
+            event.preventDefault();
+        }
+    
+    </script>
+</body>
+</html>

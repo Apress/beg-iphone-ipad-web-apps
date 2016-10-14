@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-Touch Demo</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <style>
+    
+    div {
+        -webkit-user-select: none;
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        background-color: black;
+        -webkit-border-radius: 22px;
+    }
+    
+    div span {
+        display: block;
+        font: bold 9px/15px sans-serif;
+        margin-top: -15px;
+    }
+    
+    </style>
+    
+    <script>
+
+    document.addEventListener("touchstart", handleTouch, false);
+    document.addEventListener("touchmove", handleTouch, false);
+    document.addEventListener("touchend", handleTouch, false);
+
+    function handleTouch(event) {        
+        var touch  = event.changedTouches;
+
+        for (var n = 0; n < touch.length; n++) {
+            var id  = "i" + touch[n].identifier;
+            var div = document.getElementById(id);
+            if (!div) {
+                div = document.createElement("div");
+                div.innerHTML = "<span>" + id.substr(1) + "<span>";
+                div.id = id;
+                document.body.appendChild(div);
+            }
+            div.style.left    = (touch[n].pageX - 22) + "px";
+            div.style.top     = (touch[n].pageY - 22) + "px";
+            div.style.opacity = (event.type == "touchend") ? 0.05 : 1.0;
+        }
+
+        event.preventDefault();
+    }
+
+    </script>
+</head>
+<body></body>
+</html>

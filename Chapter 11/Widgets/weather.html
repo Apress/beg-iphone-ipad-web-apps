@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather</title>
+
+    <style>
+        body {
+            font-family: helvetica;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        p { margin: 0; }
+   </style>
+    <script src="scripts/widget.js"></script>
+    <script>
+        function contentLoaded() {
+            var allowed = ["http://www.example1.local"];
+            new Widget(allowed).loaded();
+        }
+    </script>
+</head>
+
+<body onload="contentLoaded()">
+
+    <p>Hello, I'm a weather widget.</p>
+
+</body>
+</html>

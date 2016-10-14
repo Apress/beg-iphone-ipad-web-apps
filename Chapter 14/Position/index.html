@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation Example</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+    <style>
+
+        .header-wrapper .header-button {
+            background-color: #2070e9;
+        }
+
+        .header-wrapper {
+            background-color: rgba(0,0,0,0.65);
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        .view {
+            height: 100%;
+            position: relative;
+        }
+
+        #map { min-height: 100%; }
+
+    </style>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script>
+        var ns = google.maps; // Namespace
+        var map;
+
+        function init() {
+            var latlng = new ns.LatLng(0, 0);
+            var options = {
+                zoom: 2,
+                center: latlng,
+                disableDefaultUI: true,
+                scaleControl: true,
+                mapTypeId: ns.MapTypeId.SATELLITE
+            };
+
+            map = new ns.Map(document.getElementById("map"), options);
+            button(true);
+        }
+
+        function button(active) {
+            document.getElementsByTagName("button")[0].disabled = !active;
+        }
+        
+        function locate() {
+            button(false);
+            window.navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+        }
+        
+        function successCallback(position) {
+            var latlng = new ns.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(latlng);
+            map.setZoom(17);
+            button(true);
+            drawMarker(latlng, position.coords.accuracy, "#0072f9");    // A blue marker
+        }
+        
+        function failureCallback(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Positioning failed. Please check that the location service is on and that you have accepted location for the application.");
+                    break;
+        
+                case error.TIMEOUT:
+                case error.POSITION_UNAVAILABLE:
+                    alert("Positioning failed. This often occurs when you are indoors.");
+                    break;
+        
+                default:
+                    alert("Unexpected error occurred.");
+            }
+            button(true);
+        }
+
+        var bullet = document.createElement("canvas");
+                
+        function createBullet(color) {
+            /* Always clear the canvas */
+            bullet.width = 16;
+            bullet.height = 16;
+                    
+            /* Get the drawing context */
+            var ctx = bullet.getContext("2d");
+        
+            /* Create a gradient using the color argument */
+            var main = ctx.createRadialGradient(5, 6, 1, 0.5, 6, 20);
+            main.addColorStop(0, color);
+            main.addColorStop(1, "white");
+        
+            /* Create the shiny effect */
+            var shine = ctx.createRadialGradient(5, 6, 0.5, 5, 6, 40);
+            shine.addColorStop(0, "white");
+            shine.addColorStop(0.038, "black");
+            shine.addColorStop(1, "white");
+        
+            /* Set the drawing styles */
+            ctx.strokeStyle = color;
+            ctx.fillStyle = main;
+            ctx.lineWidth = 2;
+                    
+            /* Draw the bullet */
+            ctx.beginPath();
+            ctx.arc(8, 8, 7, 0, Math.PI * 2, false);
+            ctx.stroke();
+            ctx.fill();
+        
+            /* Then apply the shiny effect */
+            ctx.save();
+            ctx.globalCompositeOperation = "lighter";
+            ctx.fillStyle = shine;
+            ctx.fill();
+            ctx.restore();
+        
+            /* Bolder stroke */
+            ctx.strokeStyle = "rgba(0,0,0,0.25)";
+            ctx.stroke();
+            
+            return bullet.toDataURL();
+        }
+
+        var markerBullet, markerCircle;
+
+        function drawMarker(latlng, accuracy, color) {
+            if (markerBullet) {
+                markerBullet.setPosition(latlng);
+            } else {
+                markerBullet = new ns.Marker({
+                    position: latlng,
+                    map: map,
+                    icon: createBullet(color),
+                    zIndex: 1,
+                });
+                markerBullet.setPosition(latlng);
+            }
+
+            if (markerCircle) {
+                markerCircle.setCenter(latlng);
+            } else {
+                markerCircle = new ns.Circle( {
+                    center: latlng,
+                    radius: accuracy,
+                    map: map,
+        
+                    fillColor: color,
+                    fillOpacity: 0.25,
+                    strokeColor: color,
+                    strokeOpacity: 0.65,
+                    strokeWeight: 2,
+                    zIndex:0
+                });
+            }
+        }
+
+    </script>
+</head>
+
+<body onload="init()">
+    <div class="view">    
+        <div id="map"></div>
+
+        <div class="header-wrapper">
+            <h1>Geolocation</h1>
+            <button class="header-button" onclick="locate()" disabled>Locate</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+1
+00:00:16,000 --> 00:00:18,000
+Cui cui ! Je suis un oiseau !
+
+2
+00:00:19,500 --> 00:00:20,000
+Cuuiii... <span>Aïe !</span>
+
+3
+00:00:20,000 --> 00:00:21,000
+Tweeet... Ouch!
+
+4
+00:00:47,000 --> 00:00:50,000
+Oh, et bien c’est déjà le jour.
+ Quelle belle journée !
+
+5
+00:01:03,000 --> 00:01:05,000
+Humm, ça sent bon... Qu’est-ce que c’est ?
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: helvetica;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        p { margin: 0; }
+   </style>
+    <script>
+        window.addEventListener("message", handleParentMessage, false);
+
+        function contentLoaded() {
+            if (window.opener) {
+                window.opener.postMessage("loaded", "*");
+            }
+        }
+
+        function handleParentMessage(e) {
+            if (e.origin == "http://www.example1.local") {
+                if (e.data == "getFrameTitle") {
+                    e.source.postMessage("title:" + document.title, e.origin);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="contentLoaded()">
+
+    <p>Hello, I'm a calculator window.</p>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div>Click Me</div>
+
+<script>
+
+    /* A sample objet */
+    var Example = function(name) {
+        this.name = name;
+    }
+
+    Example.prototype.handleEvent = function(event) {
+        switch (event.type) {
+            case "mousedown":
+            case "mouseup":
+                this[event.type + "Handler"](event);
+        }
+    }
+
+    Example.prototype.mousedownHandler = function(event) {
+        console.log("The 'mousedown' handler was called with " + this.name + ".");
+    }
+
+    Example.prototype.mouseupHandler = function(event) {
+        console.log("The 'mouseup' handler was called with " + this.name + ".");
+    }
+
+    /* Create 2 objects and use them as event handlers */
+    var div = document.getElementsByTagName("div")[0];
+    var obj1 = new Example("Object 1");
+    var obj2 = new Example("Object 2");
+
+    div.addEventListener("mousedown", obj1, false);
+    div.addEventListener("mouseup", obj2, false);
+
+</script>

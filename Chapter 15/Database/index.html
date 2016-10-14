@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+    <script src="scripts/BigSpinner.js"></script>
+    <script src="scripts/database.js"></script>
+    <script src="scripts/storage.js"></script>
+    <style>
+        .template { display: none; }
+    </style>
+</head>
+
+<body onload="init()">
+    <div class="view">
+        <div class="header-wrapper">
+            <h1>Apple's RSS Feed</h1>
+            <button class="header-button" onclick="refresh()">
+                <span>Refresh</span>
+            </button>
+        </div>
+
+        <div class="list-wrapper">
+            <h2>Latest News</h2>
+            <ul id="feed" class="template">
+                <li><a href="#{link}">
+                    <span>#{title}</span><small>#{dateFormatted}
+                          #{contentFormatted}</small>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

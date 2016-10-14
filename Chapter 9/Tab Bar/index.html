@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Masks Demo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="initial-scale=1.0;
+        maximum-scale=1.0; user-scalable=no">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+    <style>
+    
+        .tabbar-wrapper li i {
+            -webkit-mask-image: -webkit-canvas(tabbar-icons);
+        }
+        
+        .tabbar-wrapper li b {
+            background-image: -webkit-canvas(tabbar-icons);
+        }
+
+        .tabbar-wrapper li:nth-child(2) i { -webkit-mask-position-x: -36px; }
+        .tabbar-wrapper li:nth-child(3) i { -webkit-mask-position-x: -72px; }
+        .tabbar-wrapper li:nth-child(4) i { -webkit-mask-position-x: -36px; }
+    
+        .tabbar-wrapper li:nth-child(2) b { background-position-x: -34px; }
+        .tabbar-wrapper li:nth-child(3) b { background-position-x: -70px; }
+        .tabbar-wrapper li:nth-child(4) b { background-position-x: -34px; }
+    
+    </style>
+    <script>
+    
+        const AREA_SIZE = 36;
+        
+        /* Prepare the 3 states of 3 icons */
+        initTabBarIcons("tabbar-icons", 3, createIcons);
+        
+        function initTabBarIcons(id, count, src) {
+            var ctx = document.getCSSCanvasContext("2d", id, AREA_SIZE * count, AREA_SIZE * 3);
+        
+            if (typeof src == 'function') {
+                src(ctx);
+                createShadows(ctx);
+        
+            } else {
+                var i = new Image();
+                i.onload = function() {
+                    ctx.drawImage(this, 0, 0);
+                    createShadows(ctx);
+                }
+                i.src = src;
+            }
+        }
+
+        function createIcons(ctx) {
+            ctx.save();
+        
+            /* Offset of 1x1 pixel */
+            ctx.translate(1, 1);
+            ctx.fillStyle = "black";
+        
+            /* A circle icon */
+            ctx.beginPath();
+            ctx.arc(15, 15, 15, 0, Math.PI * 2, false);
+            ctx.fill();
+        
+            /* A square icon */
+            ctx.translate(AREA_SIZE, 0);
+            ctx.fillRect(0, 0, 30, 30);
+        
+            /* A triangle icon */
+            ctx.translate(AREA_SIZE, 0);
+            ctx.moveTo(15, 0);
+            ctx.lineTo(30, 30);
+            ctx.lineTo(0, 30);
+            ctx.fill();
+        
+            ctx.restore();
+        }
+
+        function createShadows(ctx) {
+            var c = ctx.canvas;
+            var w = c.width;
+            var h = c.height / 3;
+        
+            ctx.save();
+        
+            /* Draw the emboss shadow */
+            ctx.globalAlpha = 0.25;
+            ctx.drawImage(c, 0,0,w,h, 0,h*1-1,w,h);
+        
+            /* Draw the drop shadow */
+            ctx.globalAlpha = 0.1;
+            ctx.drawImage(c, 0,0,w,h, 1,h*2+0,w,h);
+            ctx.drawImage(c, 0,0,w,h, 2,h*2+1,w,h);
+            ctx.drawImage(c, 0,0,w,h, 3,h*2+2,w,h);
+        
+            ctx.restore();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="view">
+        <div class="header-wrapper">
+            <h1>Tab Bar Demo</h1>
+        </div>
+    
+        <nav class="tabbar-wrapper">
+            <ul>
+                <li id="tab1"><a href="#tab1"><b><i></i></b>Most Recent</a></li>
+                <li id="tab2"><a href="#tab2"><b><i></i></b>Favorites</a></li>
+                <li id="tab3"><a href="#tab3"><b><i></i></b>Search</a></li>
+                <li id="tab4"><a href="#tab4"><b><i></i></b>Bookmarks</a></li>
+                <li id="tab5"><a href="#tab5"><b><i></i></b>History</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
